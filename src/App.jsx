@@ -6,6 +6,8 @@ function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
+  const [cart, setCart] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,6 +22,22 @@ function App() {
     };
     fetchData();
   }, []);
+
+  // Fonction pour ajouter un repas au panier
+  const addToCart = (mealId) => {
+    setCart([...cart, mealId]);
+  };
+
+  // Fonction pour supprimer un repas du panier
+  const removeFromCart = (mealId) => {
+    // Complétez cette fonction pour gérer la suppression d'un repas du panier
+  };
+
+  // Calculer le prix total en fonction du panier
+  const totalPrices = cart.reduce(
+    (acc, meal) => acc + parseFloat(meal.price),
+    0
+  );
 
   return isLoading ? (
     <span className="loading-message">En cours de chargement...</span>
@@ -38,7 +56,11 @@ function App() {
             {category.name}
             <ul className="meals-list">
               {category.meals.map((meal, index) => (
-                <li key={index} className="meal-item">
+                <li
+                  key={index}
+                  className="meal-item"
+                  onClick={() => addToCart(meal)} // Incrément du panier au clic
+                >
                   {meal.title} {meal.description} {meal.price} €
                   {meal.picture && (
                     <img
@@ -53,6 +75,22 @@ function App() {
           </li>
         ))}
       </ul>
+
+      <div className="cart-container">
+        <button> Valider mon panier </button>
+        <ul className="cart-list">
+          {cart.map((item, index) => (
+            <li key={index}>
+              {item.title} {item.price} €
+            </li>
+          ))}
+        </ul>
+        {cart.length > 0 ? (
+          <div className="total-price">
+            <span>Total : {totalPrices.toFixed(2)} €</span>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }
