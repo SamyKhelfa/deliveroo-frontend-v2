@@ -1,0 +1,35 @@
+.restaurant-image {
+  width: 350px;
+  height: 195px;
+  border-radius: 8px;
+}
+
+.meal-picture {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: none;
+}
+
+.meal-item {
+  align-items: flex-start;
+  background: #fff;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  width: 350px;
+  height: 160px;
+  padding: 15px;
+  overflow: hidden;
+}
+
+.meals-list {
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
